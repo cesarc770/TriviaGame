@@ -61,8 +61,19 @@ function loadGameOverPage(){
 	$("#questions").empty();
 	var startButton = $("<button>").text("Start Again");
 	startButton.addClass("start-game btn btn-danger");
+	var correctAnswers = $("<div>").html("Correct Answers: " + correct);
+	var wrongAnswers = $("<div>").html("Incorrect Answers: " + incorrect);
+	var unansweredAnswers = $("<div>").html("Unanswered: " + (15 - correct - incorrect));
+	$("#questions").html("<h1>All done! Look at your stats: </h1>");
+	$("#questions").append(correctAnswers).append(wrongAnswers).append(unansweredAnswers);
+	$("#main-content").append(startButton);
+
+
 	startButton.on("click", function(){
 		$("#questions").empty();
+		correct = 0;
+		incorrect = 0;
+		unanswered = 0;
 		setTimer();
 	$(".start-game").remove();
 	$.ajax({
@@ -91,22 +102,29 @@ function loadGameOverPage(){
 		loadGameOverPage();
 	},60000);
 
+	$(".options").on("click", function(){
+	if($(this).attr("value") === "correct"){
+		correct = correct + 1;
+	}else if($(this).attr("value") === "incorrect"){
+		incorrect = incorrect + 1;
+	}
+})
+
 	});
 	})
-	var correctAnswers = $("<div>").html("Correct Answers: " + correct);
-	var wrongAnswers = $("<div>").html("Incorrect Answers: " + incorrect);
-	var unansweredAnswers = $("<div>").html("Unanswered: " + (15 - correct - incorrect));
-	$("#questions").html("<h1>All done! Look at your stats: </h1>");
-	$("#questions").append(correctAnswers).append(wrongAnswers).append(unansweredAnswers);
-	$("#main-content").append(startButton);
+	
 
 }
 
 
 //if you click on start button it resets the game wihtout reloading the page 
 $(".start-game").on("click", function(){
+
 	console.log("Trivial Trivia Loaded");
 	$("#questions").empty();
+		correct = 0;
+		incorrect = 0;
+		unanswered = 0;
 	setTimer();
 	$(".start-game").remove();
 	$.ajax({
