@@ -11,6 +11,7 @@ var queryUrl = "https://opentdb.com/api.php?amount=20&category=14&type=multiple"
 var correct = 0;
 var incorrect = 0;
 var unanswered = 0;
+var time = 45;
 
 //display question and answers, mark the answers for correct and incorrect
 function display(question, answer1, answer2, answer3, answer4, correctIndex){
@@ -42,7 +43,6 @@ function display(question, answer1, answer2, answer3, answer4, correctIndex){
 //set timer
 //timer starts at 30 seconds
 function setTimer(){
-	var time = 60;
 	var int = setInterval(function(){ 
 			while(time > 0){
 				time = time -1;
@@ -50,7 +50,7 @@ function setTimer(){
 				return time;
 			}
 	}, 1000);
-	if(int <= 0){
+	if(time <= 0){
 		clearInterval(int);
 	}
 }
@@ -59,6 +59,7 @@ function setTimer(){
 //when all the questions have been answered it goes to the last page showing stats of right and wrong answers
 function loadGameOverPage(){
 	$("#questions").empty();
+	time = 0;
 	var startButton = $("<button>").text("Start Again");
 	startButton.addClass("start-game btn btn-danger");
 	var correctAnswers = $("<div>").html("Correct Answers: " + correct);
@@ -67,17 +68,27 @@ function loadGameOverPage(){
 	wrongAnswers.addClass("text-center answer-line");
 	var unansweredAnswers = $("<div>").html("Unanswered: " + (15 - correct - incorrect));
 	unansweredAnswers.addClass("text-center answer-line");
-	$("#questions").html("<h1>All done! Look at your stats: </h1>");
+	$("#questions").html("<h1 class='text-center'>All done! Look at your stats: </h1>");
 	$("#questions").append(correctAnswers).append(wrongAnswers).append(unansweredAnswers);
 	$("#main-content").append(startButton);
 
 
+
+
 	startButton.on("click", function(){
+		time = 45;
 		$("#questions").empty();
+		$(".timer-line").html("Time Remaining: <span id=\"timer\">45</span>");
 		correct = 0;
 		incorrect = 0;
 		unanswered = 0;
-		setTimer();
+		var timer = setInterval(function(){ 
+			while(time > 0){
+				time = time -1;
+				$("#timer").html(time);
+				return time;
+			}
+	}, 1000);
 	$(".start-game").remove();
 	$.ajax({
 		url: queryUrl,
@@ -103,9 +114,10 @@ function loadGameOverPage(){
 
 		setTimeout(function(){
 		loadGameOverPage();
-	},60000);
+	},45000);
 
 	$(".options").on("click", function(){
+
 	if($(this).attr("value") === "correct"){
 		correct = correct + 1;
 	}else if($(this).attr("value") === "incorrect"){
@@ -113,6 +125,14 @@ function loadGameOverPage(){
 	}
 })
 
+
+var newDiv = $("<div>").html("<button class='btn-danger text-center' id='done'>Done</button>");
+		$('#questions').append(newDiv);
+$("#done").on("click", function(event){
+	event.preventDefault();
+	loadGameOverPage();
+	clearInterval(timer);
+});
 	});
 	})
 	
@@ -122,13 +142,20 @@ function loadGameOverPage(){
 
 //if you click on start button it resets the game wihtout reloading the page 
 $(".start-game").on("click", function(){
-
+	time = 45;
 	console.log("Trivial Trivia Loaded");
+	$(".timer-line").html("Time Remaining: <span id=\"timer\">45</span>");
 	$("#questions").empty();
 		correct = 0;
 		incorrect = 0;
 		unanswered = 0;
-	setTimer();
+	var timer = setInterval(function(){ 
+			while(time > 0){
+				time = time -1;
+				$("#timer").html(time);
+				return time;
+			}
+	}, 1000);
 	$(".start-game").remove();
 	$.ajax({
 		url: queryUrl,
@@ -151,11 +178,13 @@ $(".start-game").on("click", function(){
 		display(triviaQ[12].question, triviaQ[12].incorrect_answers[2], triviaQ[12].incorrect_answers[0], triviaQ[12].incorrect_answers[1], triviaQ[12].correct_answer, 3);
 		display(triviaQ[13].question, triviaQ[13].incorrect_answers[1], triviaQ[13].incorrect_answers[0], triviaQ[13].correct_answer, triviaQ[13].incorrect_answers[2], 2);
 		display(triviaQ[14].question, triviaQ[14].incorrect_answers[0], triviaQ[14].correct_answer, triviaQ[14].incorrect_answers[1], triviaQ[14].incorrect_answers[2], 1);
-
 		setTimeout(function(){
 		loadGameOverPage();
-	},60000);
+	},45000);
 
+var newDiv = $("<div>").html("<button class='btn-danger text-center' id='done'>Done</button>");
+newDiv.addClass("row");
+		$('#questions').append(newDiv);
 		//check answers
 $(".options").on("click", function(){
 	if($(this).attr("value") === "correct"){
@@ -164,6 +193,13 @@ $(".options").on("click", function(){
 		incorrect = incorrect + 1;
 	}
 })
+
+$("#done").on("click", function(event){
+	event.preventDefault();
+	loadGameOverPage();
+	clearInterval(timer);
+
+});
 	});
 });
 

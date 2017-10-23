@@ -33,6 +33,7 @@ h1{
 	border: 3px grey double;
 	width: 25%;
 	margin-left: 37.5%;
+	margin-top: 100px;
 }
 
 #question{
@@ -46,4 +47,9 @@ h1{
 
 .answer-line{
 	font-size: 25px;
+}
+
+#done{
+	width: 20%;
+	margin-left: 40%;
 }
