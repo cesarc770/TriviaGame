@@ -52,4 +52,7 @@ h1{
 #done{
 	width: 20%;
 	margin-left: 40%;
+	margin-right: 40%;
+	margin-top: 30px;
+	margin-bottom: 30px;
 }
