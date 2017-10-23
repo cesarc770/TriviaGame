@@ -1,0 +1,40 @@
+body{
+	background: url("../images/background.png");
+}
+
+.options{
+	float: left;
+	padding: 5px;
+}
+
+p {
+	clear: both;
+	font-weight: bold;
+	font-size: 30px;
+}
+
+h1{
+	font-size: 60px;
+	color: #0000b3;
+
+}
+
+#main-content{
+	width: 80%;
+	margin-left: 10%;
+	background-color: #ffff99;
+	min-height: 500px;
+	margin-top: 100px;
+}
+
+.start-game{
+	padding: 30px;
+	font-size: 30px;
+	border: 3px grey double;
+	width: 25%;
+	margin-left: 37.5%;
+}
+
+#question{
+	background-color: #ffff99;
+}
