@@ -38,3 +38,12 @@ h1{
 #question{
 	background-color: #ffff99;
 }
+
+.timer-line{
+	font-size: 25px;
+	font-weight: bold;
+}
+
+.answer-line{
+	font-size: 25px;
+}

@@ -62,8 +62,11 @@ function loadGameOverPage(){
 	var startButton = $("<button>").text("Start Again");
 	startButton.addClass("start-game btn btn-danger");
 	var correctAnswers = $("<div>").html("Correct Answers: " + correct);
+	correctAnswers.addClass("text-center answer-line");
 	var wrongAnswers = $("<div>").html("Incorrect Answers: " + incorrect);
+	wrongAnswers.addClass("text-center answer-line");
 	var unansweredAnswers = $("<div>").html("Unanswered: " + (15 - correct - incorrect));
+	unansweredAnswers.addClass("text-center answer-line");
 	$("#questions").html("<h1>All done! Look at your stats: </h1>");
 	$("#questions").append(correctAnswers).append(wrongAnswers).append(unansweredAnswers);
 	$("#main-content").append(startButton);
