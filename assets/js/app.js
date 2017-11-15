@@ -43,7 +43,8 @@ var game = {
 		$("#subwrapper").html("<h2 id='counter'>30</h2>")
 		$("#subwrapper").append("<h2>" + questions[game.currentQuestion].question + "</h2>");
 		answers = questions[game.currentQuestion].incorrect_answers;
-		answers.push(questions[game.currentQuestion].correct_answer);
+		if(answers.length < 4)
+			answers.push(questions[game.currentQuestion].correct_answer);
 		answers.sort();
 		console.log(answers);
 		for(var i = 0; i <answers.length; i++){
@@ -88,7 +89,7 @@ var game = {
 	answeredCorrectly: function(){
 		clearInterval(timer);
 		game.correct++;
-		$("#subwrapper").html("<h2>YOU GOT IT RIGHT!!!</h2>")
+		$("#subwrapper").html("<h2>THAT IS RIGHT!!!</h2>")
 		if(game.currentQuestion === questions.length-1){
 			setTimeout(game.results, 3*1000);
 		}else{
@@ -98,7 +99,7 @@ var game = {
 	answeredIncorrectly: function(){
 		clearInterval(timer);
 		game.incorrect++;
-		$("#subwrapper").html("<h2>YOU GOT WRONG!!!</h2>");
+		$("#subwrapper").html("<h2>WRONG ANSWER!!!</h2>");
 		$("#subwrapper").append("<h3>The correct answer was: " + questions[game.currentQuestion].correct_answer +" </h3>");
 		if(game.currentQuestion === questions.length-1){
 			setTimeout(game.results, 3*1000);
