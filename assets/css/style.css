@@ -21,8 +21,8 @@ h1{
 }
 
 #start {
-	padding: 30px;
-	font-size: 30px;
+	padding: 5%;
+	font-size: 150%;
 	border: 3px grey double;
 	width: 25%;
 	margin-top: 100px;
@@ -35,6 +35,7 @@ h1{
 }
 
 .answer-button{
+	margin-bottom: 5px;
 	font-size: 25px;
 	width: 50%;
 	background-color: rgba(247, 70, 32, 0.7);
