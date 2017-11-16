@@ -1,25 +1,18 @@
 body{
 	background: url("../images/background.png");
+	text-align: center;
 }
 
-.options{
-	float: left;
-	padding: 5px;
-}
-
-p {
-	clear: both;
-	font-weight: bold;
-	font-size: 30px;
-}
 
 h1{
 	font-size: 60px;
 	color: #0000b3;
+	text-align: center;
+	padding: 10px;
 
 }
 
-#main-content{
+#wrapper{
 	width: 80%;
 	margin-left: 10%;
 	background-color: #ffff99;
@@ -27,29 +20,27 @@ h1{
 	margin-top: 100px;
 }
 
-.start-game{
+#start {
 	padding: 30px;
 	font-size: 30px;
 	border: 3px grey double;
 	width: 25%;
-	margin-left: 37.5%;
 	margin-top: 100px;
 }
 
-#question{
-	background-color: #ffff99;
-}
-
-.timer-line{
-	font-size: 25px;
+#counter{
+	font-size: 30px;
+	text-align: center;
 	font-weight: bold;
 }
 
-.answer-line{
+.answer-button{
 	font-size: 25px;
+	width: 50%;
+	background-color: rgba(247, 70, 32, 0.7);
 }
 
-#done{
+#reset{
 	width: 20%;
 	margin-left: 40%;
 	margin-right: 40%;

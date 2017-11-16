@@ -48,7 +48,7 @@ var game = {
 		answers.sort();
 		console.log(answers);
 		for(var i = 0; i <answers.length; i++){
-			$("#subwrapper").append("<button class='answer-button' id='button-"+i+"' data-name='" + answers[i] + "' >" + answers[i] + "</button>");
+			$("#subwrapper").append("<button class='answer-button' id='button-"+i+"' data-name='" + answers[i] + "' >" + answers[i] + "</button><br>");
 		}
 	},
 	nextQuestion: function(){
